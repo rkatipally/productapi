@@ -2,45 +2,51 @@ package com.websystique.springmvc.service;
 
 import com.websystique.springmvc.model.Product;
 import com.websystique.springmvc.model.User;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by raj on 5/16/16.
  */
+@Service("productService")
+@Transactional
 public class ProductServiceImpl implements ProductService{
-    private static List<Product> products;
+    private static Map<String , Product> products;
     static {
         products = populateDummyProducts();
     }
     public Product findByModelNo(String modelNo) {
-        return null;
+        return products.get(modelNo);
     }
 
     public Map<String , Product> findByType(String type) {
         return null;
     }
 
-    public List<Product> findByBrand(String type) {
+    public Map<String,Product> findByBrand(String type) {
         return null;
     }
 
     public void saveProduct(Product product) {
-       products.add(product);
+       products.put(product.getModelNo(), product);
     }
 
-    public Product updateProduct(Product product) {
-        int index = users.indexOf(user);
-        users.set(index, user);
-        return null;
+    public String  updateProduct(Product product) {
+        System.out.println("description :" + product.getDescription());
+        products.put(product.getModelNo(), product);
+        return product.getModelNo();
     }
 
     public Product deleteProductByModelNo(String modelNo) {
-        return null;
+        return products.remove(modelNo);
     }
 
-    public List<Product> findAllProducts() {
+    public Map<String , Product> findAllProducts() {
         return products;
     }
 
@@ -52,11 +58,11 @@ public class ProductServiceImpl implements ProductService{
         return false;
     }
 
-    private static List<Product> populateDummyProducts(){
-        List<Product> products = new ArrayList<Product>();
-        products.add(new Product("M101","Telivision", 100L, "tv", "samsung" , 1000.00));
-        products.add(new Product("M102","Home Theatre", 200L, "audio", "bose" , 500.00));
-        products.add(new Product("M103","Telivision", 200L, "tv", "sony" , 500.00));
+    private static Map<String , Product> populateDummyProducts(){
+        Map<String , Product> products = new HashMap<String , Product>();
+        products.put("M101",new Product("M101","Telivision", 100L, "tv", "1" , 1000.00));
+        products.put("M102",new Product("M102","Home Theatre", 200L, "speaker", "2" , 500.00));
+        products.put("M103",new Product("M103","Telivision", 200L, "tv", "2" , 500.00));
         return products;
     }
 

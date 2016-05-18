@@ -3,9 +3,12 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+<<<<<<< Updated upstream
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>

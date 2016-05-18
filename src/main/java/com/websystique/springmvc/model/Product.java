@@ -21,6 +21,9 @@ public class Product {
         this.price = price;
     }
 
+    public Product(){
+
+    }
 
     public String getModelNo() {
         return modelNo;
